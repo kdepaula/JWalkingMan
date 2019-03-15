@@ -24,24 +24,25 @@ public class Frame extends JFrame implements ActionListener
 
 			public void keyPressed(KeyEvent e) 
 			{	
+				
 					if(e.getKeyCode() == e.VK_S)
 					{
-						man.setDy(10);
+						man.setDy(8);
 					}
 				
 					if(e.getKeyCode() == e.VK_W)
 					{
-						man.setDy(-10);
+						man.setDy(-8);
 					}
 				
 					if(e.getKeyCode() == e.VK_D)
 					{
-						man.setDx(10);
+						man.setDx(8);
 					}
 				
 					if(e.getKeyCode() == e.VK_A)
 					{
-						man.setDx(-10);
+						man.setDx(-8);
 					}
 				
 					if(e.getKeyCode() == e.VK_SPACE)
@@ -90,30 +91,44 @@ public class Frame extends JFrame implements ActionListener
 	
 	public void actionPerformed(ActionEvent e) 
 	{	
-		man.update();
 		this.fixBounds();
+		man.update();
 		for(Ball b: balls)
 			b.update();
+		if(!balls.isEmpty())
+		{
+			for(int i = 1; i < balls.size(); i++)
+			{
+				if(balls.get(i).getX() > this.getWidth())
+				{
+					remove(balls.get(i));
+					balls.remove(i);
+					i--;
+				}
+			}	
+		}
 		repaint();
 	}
 	
 	public void fixBounds()
 	{
-		if(man.getX() == 0)
+		
+		if(man.getX() < 0)
 		{
+			System.out.println(man.getX());
 			man.setLocation(0, man.getY());
 		}
-		else if(man.getX() == this.getX())
+		if(man.getX() > this.getWidth() - man.getWidth() + 19)
 		{
-			man.setLocation(this.getX(), man.getY());
+			man.setLocation(this.getWidth() - man.getWidth() + 19, man.getY());
 		}
-		else if(man.getY() == 0)
+		if(man.getY() < 10)
 		{
-			man.setLocation(man.getX(), 0);
+			man.setLocation(man.getX(), 10);
 		}
-		else if(man.getY() == this.getY())
+		if(man.getY() > this.getHeight() - man.getHeight() - 25)
 		{
-			man.setLocation(man.getX(), this.getY());
+			man.setLocation(man.getX(), this.getHeight() - man.getHeight() - 25);
 		}
 	}
 	
