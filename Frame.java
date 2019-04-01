@@ -47,7 +47,7 @@ public class Frame extends JFrame implements ActionListener
 				
 					if(e.getKeyCode() == e.VK_SPACE)
 					{
-						Ball b = new Ball(man.getX(), man.getY());
+						Ball b = new Ball(man.getX() + 10, man.getY() + 20);
 						balls.add(b);
 						add(b);
 					}
