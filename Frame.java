@@ -115,16 +115,15 @@ public class Frame extends JFrame implements ActionListener
 		
 		if(man.getX() < 0)
 		{
-			System.out.println(man.getX());
 			man.setLocation(0, man.getY());
 		}
 		if(man.getX() > this.getWidth() - man.getWidth() + 19)
 		{
 			man.setLocation(this.getWidth() - man.getWidth() + 19, man.getY());
 		}
-		if(man.getY() < 10)
+		if(man.getY() < 7)
 		{
-			man.setLocation(man.getX(), 10);
+			man.setLocation(man.getX(), 7);
 		}
 		if(man.getY() > this.getHeight() - man.getHeight() - 25)
 		{
